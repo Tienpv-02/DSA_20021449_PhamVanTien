@@ -9,13 +9,14 @@ public class Solution {
     // Write your code here
     long lSum = 0;
     long rSum = 0;
-    for (int i = 0; i < arr.size(); i++) {
-      rSum += arr.get(i);
+    for (Integer integer : arr) {
+      rSum += integer;
     }
-    for (int i = 0; i < arr.size(); i++) {
-      rSum -= arr.get(i);
-      if (rSum == lSum) return "YES";
-      lSum += arr.get(i);
+    for (Integer integer : arr) {
+      rSum -= integer;
+      if (rSum == lSum)
+        return "YES";
+      lSum += integer;
     }
     return "NO";
   }
@@ -46,24 +47,43 @@ public class Solution {
     return res;
   }
 
-  /**New year chaos*/
-    public static void minimumBribes(List<Integer> q) {
-      List<Integer> deviationOfIndex = new ArrayList<>();
-      for (int i = 0; i < q.size(); i++) {
-        int deviation = i + 1 - q.get(i);
-        if (deviation > 2 || deviation < -2) {
-          System.out.println("Too chaotic");
-          return;
-        }
-        deviationOfIndex.add(deviation);
+  /** Pairs. */
+  public static int pairs(int k, List<Integer> arr) {
+    Collections.sort(arr);
+    int i = 0;
+    int j = 1;
+    int count = 0;
+    while (j < arr.size()) {
+      long diff = arr.get(j) - arr.get(i);
+      if (diff == k) {
+        count++;
+        j++;
+      } else if (diff > k) {
+        i++;
+      } else if (diff < k) {
+        j++;
       }
-      int count  = 0;
-      for (int i = 0; i < deviationOfIndex.size(); i++) {
-        if (deviationOfIndex.get(i) > 0) {
-          count += deviationOfIndex.get(i);
-        }
-      }
-      System.out.println(count);
     }
+    return count;
+  }
 
+  /**New year chaos*/
+  public static void minimumBribes(List<Integer> q) {
+    int count = 0;
+    for(int i=q.size()-1; i>=0; i--){
+      int bribes = q.get(i) - (i+1);
+      if( bribes > 2) {
+        System.out.println("Too chaotic");
+        return;
+      }
+      else if (bribes < 0) {
+        for (int j = 0; j < i; j++) {
+          if (q.get(j) > q.get(i)) {
+            count++;
+          }
+        }
+      }
+    }
+    System.out.println(count);
+  }
 }
