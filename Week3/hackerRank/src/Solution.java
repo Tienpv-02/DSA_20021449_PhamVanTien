@@ -45,4 +45,25 @@ public class Solution {
     }
     return res;
   }
+
+  /**New year chaos*/
+    public static void minimumBribes(List<Integer> q) {
+      List<Integer> deviationOfIndex = new ArrayList<>();
+      for (int i = 0; i < q.size(); i++) {
+        int deviation = i + 1 - q.get(i);
+        if (deviation > 2 || deviation < -2) {
+          System.out.println("Too chaotic");
+          return;
+        }
+        deviationOfIndex.add(deviation);
+      }
+      int count  = 0;
+      for (int i = 0; i < deviationOfIndex.size(); i++) {
+        if (deviationOfIndex.get(i) > 0) {
+          count += deviationOfIndex.get(i);
+        }
+      }
+      System.out.println(count);
+    }
+
 }
