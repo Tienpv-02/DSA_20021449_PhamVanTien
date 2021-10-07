@@ -76,8 +76,9 @@ public class Solution {
         System.out.println("Too chaotic");
         return;
       }
-      else if (bribes < 0) {
-        for (int j = 0; j < i; j++) {
+      else{
+        int st = Math.max(0,q.get(i)-2);
+        for (int j = st; j < i; j++) {
           if (q.get(j) > q.get(i)) {
             count++;
           }
