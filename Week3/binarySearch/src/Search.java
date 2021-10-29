@@ -1,20 +1,21 @@
 public class Search {
 
-  public static int binarySearch(int[] a, int number) {
-    return binarySearch1(a, number, 0 , a.length-1);
-  }
-
-  public static int binarySearch1(int[] a, int number, int lIndex, int rIndex) {
+  public static int binarySearch(List<Integer> a, int number, int lIndex, int rIndex) {
     if (rIndex >= lIndex) {
-      int midIndex = lIndex + (rIndex - lIndex) / 2;     // ~ (rIndex + lIndex) / 2
-      if (a[midIndex] == number) {
+      int midIndex = lIndex + (rIndex - lIndex) / 2;
+      if (a.get(midIndex) == number) {
         return midIndex;
-      } else if (number > a[midIndex]) {
-        return binarySearch1(a, number, midIndex + 1 , rIndex);
+      } else if (number > a.get(midIndex)) {
+        return binarySearch(a, number, midIndex + 1 , rIndex);
       } else {
-        return binarySearch1(a, number, lIndex, midIndex - 1);
+        return binarySearch(a, number, lIndex, midIndex - 1);
       }
     }
     return -1;
   }
+  public static int introTutorial(int V, List<Integer> arr) {
+    // Write your code here
+    return binarySearch(arr, V, 0, arr.size()-1);
+  }
+
 }
