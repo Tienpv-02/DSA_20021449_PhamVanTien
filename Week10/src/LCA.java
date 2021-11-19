@@ -1,4 +1,4 @@
-import java.util.*;
+import java.util.Scanner;
 
 class Node {
   Node left;
@@ -11,29 +11,24 @@ class Node {
     right = null;
   }
 }
-public class LevelOrderTraversal {
+
+class Solution {
 
   /*
-
   class Node
       int data;
       Node left;
       Node right;
   */
-  public static void levelOrder(Node root) {
-    Queue<Node> queue = new LinkedList<>();
-    queue.add(root);
-    while (!queue.isEmpty()) {
-      Node tmp = queue.poll();
-      System.out.print(tmp.data + " ");
-      if (tmp.left != null) {
-        queue.add(tmp.left);
-      }
-      if (tmp.right != null) {
-        queue.add(tmp.right);
-      }
+  public static Node lca(Node root, int v1, int v2) {
+    // Write your code here.
+    if (root.data < v1 && root.data < v2) {
+      return lca(root.right, v1, v2);
     }
-
+    if (root.data > v1 && root.data > v2) {
+      return lca(root.left, v1, v2);
+    }
+    return root;
   }
 
   public static Node insert(Node root, int data) {
@@ -60,7 +55,10 @@ public class LevelOrderTraversal {
       int data = scan.nextInt();
       root = insert(root, data);
     }
+    int v1 = scan.nextInt();
+    int v2 = scan.nextInt();
     scan.close();
-    levelOrder(root);
+    Node ans = lca(root,v1,v2);
+    System.out.println(ans.data);
   }
 }
