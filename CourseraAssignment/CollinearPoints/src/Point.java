@@ -116,6 +116,5 @@ public class Point implements Comparable<Point> {
     Point p1 = new Point(2,1);
     Point p2 = new Point(1,1);
     System.out.println(p1.compareTo(p2));
-    p1.drawTo(p2);
   }
 }
