@@ -59,7 +59,7 @@ public class Percolation {
     }
     numberOfOpenSites++;
     isOpen[row][col] = true;
-    // Up
+    // Up```12345
     if (row > 1 && isOpen(row - 1, col)) {
       grid.union(siteId(row, col), siteId(row - 1, col));
     }
